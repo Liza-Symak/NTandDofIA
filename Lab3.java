@@ -1,10 +1,10 @@
 import java.util.Scanner;
 
-class GameBoard {
-    private char[][] board;
+class GameBoard { // відповідає за зберігання ігрового поля та виконання основних операцій з ним, таких як відображення, перевірка на перемогу та заповненість.
+    private char[][] board; //масив 3x3 для зберігання символів ('X', 'O' або пробіл).
 
     public GameBoard() {
-        board = new char[3][3];
+        board = new char[3][3]; 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 board[i][j] = ' ';
@@ -12,7 +12,7 @@ class GameBoard {
         }
     }
 
-    public void displayBoard() {
+    public void displayBoard() { //відображає ігрове поле у вигляді таблиці.
         System.out.println("  0 1 2");
         for (int i = 0; i < 3; i++) {
             System.out.print(i + " ");
@@ -24,7 +24,7 @@ class GameBoard {
         }
     }
 
-    public boolean makeMove(int row, int col, Player player) {
+    public boolean makeMove(int row, int col, Player player) { //робить хід, ставлячи символ гравця в обрану клітинку, якщо вона порожня.
         if (board[row][col] == ' ') {
             board[row][col] = player.getSymbol();
             return true;
@@ -32,8 +32,8 @@ class GameBoard {
         return false;
     }
 
-    public boolean checkWinner() {
-        // Check rows, columns, and diagonals
+    public boolean checkWinner() { //перевіряє, чи є переможець. Це перевірка рядків, стовпчиків і діагоналей на наявність однакових символів.
+        
         for (int i = 0; i < 3; i++) {
             if (board[i][0] == board[i][1] && board[i][1] == board[i][2] && board[i][0] != ' ') {
                 return true;
@@ -51,7 +51,7 @@ class GameBoard {
         return false;
     }
 
-    public boolean isFull() {
+    public boolean isFull() { //перевіряє, чи заповнено все ігрове поле.
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 if (board[i][j] == ' ') {
@@ -64,23 +64,23 @@ class GameBoard {
 }
 
 class Player {
-    private String name;
-    private char symbol;
+    private String name; //ім'я гравця.
+    private char symbol; //символ гравця ('X' або 'O').
 
     public Player(String name, char symbol) {
         this.name = name;
         this.symbol = symbol;
     }
 
-    public char getSymbol() {
+    public char getSymbol() { //повертає символ гравця.
         return symbol;
     }
 
-    public String getName() {
+    public String getName() { //повертає ім'я гравця.
         return name;
     }
 
-    public int[] makeMove(Scanner scanner) {
+    public int[] makeMove(Scanner scanner) { //запитує користувача на введення рядка та стовпчика для ходу, перевіряє правильність введених даних.
         int[] move = new int[2];
         while (true) {
             try {
@@ -109,7 +109,7 @@ public class Lab3 {
         Player player2 = new Player("Гравець 2", 'O');
         Player currentPlayer = player1;
 
-        while (true) {
+        while (true) { //для постійного виконання гри до перемоги або нічії.
             board.displayBoard();
             int[] move = currentPlayer.makeMove(scanner); // Передаємо сканер
             int row = move[0];
