@@ -13,7 +13,7 @@ class GameBoard { // відповідає за зберігання ігрово
     }
 
     public void displayBoard() { //відображає ігрове поле у вигляді таблиці.
-        System.out.println("  0 1 2");
+        System.out.println("  1 2 3");
         for (int i = 0; i < 3; i++) {
             System.out.print(i + " ");
             for (int j = 0; j < 3; j++) {
